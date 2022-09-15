@@ -1,0 +1,39 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": ["plugin:react/recommended", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": "latest",
+		"sourceType": "module"
+	},
+	"plugins": ["react", "@typescript-eslint", "react-hooks", "prettier"],
+	"ignorePatterns": ["build/*"],
+	"rules": {
+		"prettier/prettier": 0,
+		// ESLint 규칙을 지정합니다. extends에서 지정된 규칙을 덮어 쓸수도 있습니다.
+		"react/react-in-jsx-scope": "off",
+		"react/prop-types": "off",
+		"prefer-const": "off",
+		// "@typescript-eslint/no-empty-function": "warn",
+		"@typescript-eslint/explicit-module-boundary-types": "off",
+		"@typescript-eslint/no-explicit-any": "off",
+		"@typescript-eslint/no-non-null-assertion": "off",
+		"@typescript-eslint/ban-ts-comment": "off",
+
+		// warning 로그 많이 올라와서 임의 주석 처리
+		"@typescript-eslint/no-empty-function": "off",
+		"@typescript-eslint/no-unused-vars": "off",
+		"react/display-name": "off"
+	},
+	"settings": {
+		"react": {
+			"version": "detect" // 현재 사용하고 있는 react 버전을 eslint-plugin-react가 자동으로 감지합니다.
+		}
+	}
+}

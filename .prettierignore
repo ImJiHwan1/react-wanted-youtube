@@ -1,0 +1,7 @@
+# prettier ignore 적용시킬 폴더 정의
+
+# tsconfig.json
+# coverage
+
+# .eslintrc
+# .eslintrc.json
