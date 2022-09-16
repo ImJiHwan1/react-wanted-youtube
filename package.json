@@ -9,22 +9,25 @@
     "lint": "env-cmd -f .env.prod next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.5",
     "@types/classnames": "^2.3.1",
     "@types/lodash": "^4.14.185",
-    "@types/next-redux-wrapper": "^3.0.0",
     "@types/react-redux": "^7.1.24",
+    "@types/react-youtube": "^7.10.0",
+    "@types/redux-logger": "^3.0.9",
     "axios": "^0.27.2",
     "babel-plugin-module-resolver": "^4.1.0",
     "classnames": "^2.3.2",
     "env-cmd": "^10.1.0",
     "lodash": "^4.17.21",
     "next": "12.3.0",
-    "next-redux-wrapper": "^8.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-query": "^3.39.2",
+    "react-player": "^2.10.1",
     "react-redux": "^8.0.2",
-    "redux": "^4.2.0"
+    "react-youtube": "^10.0.0",
+    "redux": "^4.2.0",
+    "redux-logger": "^3.0.6"
   },
   "devDependencies": {
     "@types/node": "18.7.18",
