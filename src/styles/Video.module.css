@@ -1,0 +1,48 @@
+.video {
+    padding-top: 4.5%;
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.player {
+    width: 70%;
+    height: 100%;
+    margin-left: 6px;
+    margin-right: 20px;
+    float: left;
+}
+
+.playerBox {
+    width: 100%;
+    height: 80%;
+}
+
+.text {
+    height: 27%;
+}
+
+.playlist {
+    float: right;
+    width: 27%;
+    height: 100%;
+}
+
+.list {
+    list-style: none;
+    padding-top: 15px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+}
+
+.title {
+    color: black;
+}
+
+.channelTitle {
+    color: #bebebe;
+}
