@@ -1,25 +1,23 @@
-import { configureStore, ThunkAction } from "@reduxjs/toolkit";
-import { Context, createWrapper } from "next-redux-wrapper";
-import counterReducer from "./modules/counter";
-import logger from "redux-logger";
-import { Action } from "redux";
+import { configureStore } from '@reduxjs/toolkit';
+import contentSlice from '@store/modules/contentList';
 
-const makeStore = (context: Context) =>
-  configureStore({
+// 리덕스 store 생성함수
+const makeStore = () => {
+  // 슬라이스 통합 store 생성
+  const store = configureStore({
     reducer: {
-      counter: counterReducer,
+      content: contentSlice.reducer
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
-    devTools: true,
+    devTools: process.env.NODE_ENV === 'development' // 개발자도구 설정
   });
+  return store;
+};
 
-export type Appstore = ReturnType<typeof makeStore>;
-export type Appstate = ReturnType<Appstore["getState"]>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  Appstate,
-  unknown,
-  Action
->;
+// store 생성
+const store = makeStore();
 
-export const wrapper = createWrapper<Appstore>(makeStore);
+// store 엑스포트
+export default store;
+
+// RootState 엑스포트
+export type RootState = ReturnType<typeof store.getState>;
