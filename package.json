@@ -9,6 +9,10 @@
     "lint": "env-cmd -f .env.prod next lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-regular-svg-icons": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@reduxjs/toolkit": "^1.8.5",
     "@types/classnames": "^2.3.1",
     "@types/lodash": "^4.14.185",

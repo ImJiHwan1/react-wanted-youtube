@@ -16,7 +16,8 @@
           "@interfaces": "./src/interfaces",
           "@pages": "./src/pages",
           "@styles": "./src/styles",
-          "@store": "./src/store"
+          "@store": "./src/store",
+          "@images": "./src/images"
         }
       }
     ]
