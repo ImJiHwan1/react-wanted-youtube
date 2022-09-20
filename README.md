@@ -17,9 +17,9 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 ## 2. 프로젝트 구조
 
   해당 유투브 API Project는 총 3개의 화면으로 이루어져 있습니다.
-    - 메인화면(index.tsx)
-    - 보관함(wishlist.tsx)
-    - 검색화면(search.tsx)
+    메인화면(index.tsx)
+    보관함(wishlist.tsx)
+    검색화면(search.tsx)
 
    
 
