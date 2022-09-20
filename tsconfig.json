@@ -9,7 +9,8 @@
       "@pages/*": ["src/pages/*"],
       "@styles/*": ["src/styles/*"],
       "@store/*": ["./src/store/*"],
-      "@images/*": ["./src/images/*"]
+      "@images/*": ["./src/images/*"],
+      "@utils/*": ["./src/utils/*"]
     },
     "target": "es6",
     "lib": [

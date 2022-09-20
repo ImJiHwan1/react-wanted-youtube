@@ -20,6 +20,7 @@
 		"react/react-in-jsx-scope": "off",
 		"react/prop-types": "off",
 		"prefer-const": "off",
+		"no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }],
 		// "@typescript-eslint/no-empty-function": "warn",
 		"@typescript-eslint/explicit-module-boundary-types": "off",
 		"@typescript-eslint/no-explicit-any": "off",
