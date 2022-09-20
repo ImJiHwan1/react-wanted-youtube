@@ -99,7 +99,7 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
       - 메인화면과 동일하게 만약 다른화면을 간 후 다시 돌아와도 내가 최근에 본 영상부터 재생되는 기능 추가(새로고침은 미구현)<br/>
 
   - 미 구현 항목
-    -  메인화면<br/>
+    - 메인화면
       - 검색결과 리스트에서 찜목록 및 일반 목록에 있는 비디오 정렬 기능
 
 ## 5. 우대사항 대응 내역
