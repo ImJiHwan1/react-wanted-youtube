@@ -7,7 +7,6 @@ type StateType = {
   nowPlayingList: any;
   isSuffled: boolean;
   contentIndex: number;
-  playedVideoIdList: Array<string>;
 };
 
 // initalState 생성
@@ -16,7 +15,6 @@ const initialState: StateType = {
   nowPlayingList: null, 
   isSuffled: false, 
   contentIndex: 1,
-  playedVideoIdList: [],
 };
 
 // 슬라이스생성
@@ -56,15 +54,11 @@ export const contentSlice = createSlice({
       const newItem = action.payload;
       state.isSuffled = newItem;
     },
-    playedVideoId: (state: StateType, action: PayloadAction<any>) => {
-      const playedItem = action.payload;
-      state.playedVideoIdList.push(playedItem);
-    },
   }
 });
 
 // 액션을 export 해준다.
-export const { update, nowPlaying, del, isShuffleEnable, playedVideoId } = contentSlice.actions;
+export const { update, nowPlaying, del, isShuffleEnable } = contentSlice.actions;
 
 // 슬라이스를 export 해준다.
 export default contentSlice;

@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeartCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { wishListUpdate, wishListDel } from '@store/modules/wishList'
-import { isShuffleEnable, nowPlaying, playedVideoId } from '@store/modules/contentList';
+import { isShuffleEnable, nowPlaying } from '@store/modules/contentList';
 import { ContentItem } from '@interfaces/ContentInfo';
 import { isDataCheck } from '@utils/common';
 
@@ -26,41 +26,38 @@ const Player = () => {
   const [channelTitle, setChannelTitle] = useState<string>('');
   const [desc, setDesc] = useState<string>('');
   const [contentIndex, setContentIndex] = useState<number>(1);
-  const [playedVideoIdList, setPlayedVideoIdList] = useState<any>([]);
+  const [playedVideoIdList, setPlayedVideoIdList] = useState<ContentItem[]>([]);
 
   useEffect(() => {
     if(contentList !== null && nowPlayingList !== null) {
+      setPlayedVideoIdList(contentList);
       setVideoId(nowPlayingList.id.videoId);
       setTitle(nowPlayingList.snippet.title);
       setChannelTitle(nowPlayingList.snippet.channelTitle);
       setDesc(nowPlayingList.snippet.description);
     }
-  }, [nowPlayingList])
+  }, [nowPlayingList]);
   
   useEffect(() => {
     console.log('찜 목록', wishList);
-  }, [wishList])
-
-  useEffect(() => {
-    if(contentList !== null && playedVideoIdList.length > 0) {
-      // 2. 재생된 비디오 제외처리
-      let videoIdList = contentList.filter((item: ContentItem) => !playedVideoIdList.includes(item.id.videoId)); // 결과
-      // 3. lodash Sample function을 통해 Array 랜덤 처리
-      const shuffleVideoList = _.sample(videoIdList);
-      console.log('여기 탄다.')
-      // 4. nowPlaying reducer에 랜덤 처리된 Object 담는다.
-      // 페이지를 나갔다 돌아오거나 새로고침하면 초기화
-      dispatch(nowPlaying(shuffleVideoList));
-    }
-  }, [playedVideoIdList])
-  
+  }, [wishList]);
   
   const onPlayerEnd: YouTubeProps['onEnd'] = (event) => {
     if(isShuffled) {
-      // 1. 현재 재생중인 videoId push
-      let playedVideoIdItems = [];
-      playedVideoIdItems.push(videoId); 
-      setPlayedVideoIdList(playedVideoIdItems);
+      // 1. 재생된 비디오 제외처리
+      const videoIdList = playedVideoIdList.filter((item: ContentItem) => (item.id.videoId !== videoId));
+      // 2. state에 담아준다.
+      setPlayedVideoIdList(videoIdList);
+      // 3. lodash Sample function을 통해 Array 랜덤 처리
+      const shuffleVideoList = _.sample(videoIdList);
+      
+      // 모든 영상이 재생되면 마지막 영상 끝나면 중지처리
+      if(playedVideoIdList.length > 0) {
+        console.log('여기탄다.', playedVideoIdList);
+        dispatch(nowPlaying(shuffleVideoList));
+      } else {
+        event.target.pauseVideo();
+      }
     } else {
       // 검색 목록 만큼만 wishNowPlaying update 시킨다. 마지막 리스트 재생이 끝나면 재생 중지 처리
       if(contentIndex < contentList.length) {
@@ -91,13 +88,13 @@ const Player = () => {
     }
   }, []);
 
-  const onShufflePlayClick = useCallback(() => {
+  const onShufflePlayClick = () => {
     if(isShuffled) {
       dispatch(isShuffleEnable(false));
     } else {
       dispatch(isShuffleEnable(true));
     }
-  }, []);
+  };
 
   return (
     <>
@@ -122,7 +119,7 @@ const Player = () => {
           }
         </div>
         <div className={Styles.playlist}>
-          <button type='button' className={Styles.shuffleButton} title='검색결과 셔플 재생' onClick={onShufflePlayClick}><span>{`검색결과 셔플 재생 ${isShuffled ? '켜짐' : '꺼짐'}`}</span></button>
+          <button type='button' className={`${Styles.shuffleButton} w-btn-indigo`} title='검색결과 셔플 재생' onClick={onShufflePlayClick}><span>{`검색결과 셔플 재생 ${isShuffled ? '켜짐' : '꺼짐'}`}</span></button>
           <ul className={Styles.list}>
             { isDataCheck(contentList) &&
               contentList.map((contentItem:ContentItem, index: number) => (
