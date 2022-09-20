@@ -5,11 +5,12 @@ export interface ContentInfo {
   pageInfo: ContentPageInfo;
 }
 
-interface ContentItem {
+export interface ContentItem {
   etag: string;
   id: ContentId;
   kind: string;
-  snippet: ContentSnippet
+  snippet: ContentSnippet;
+  wishListExistYn: boolean;
 }
 
 interface ContentId {
@@ -25,6 +26,7 @@ interface ContentSnippet {
   publishTime: string;
   publishedAt: string;
   thumbnails: ContentThumbnails
+  title: string;
 }
 
 interface ContentThumbnails {
