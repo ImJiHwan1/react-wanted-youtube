@@ -1,48 +1,123 @@
 .video {
-    padding-top: 4.5%;
-    display: flex;
-    position: absolute;
-    width: 100%;
-    height: 100%;
+  margin-top: 4.5%;
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 .player {
-    width: 70%;
-    height: 100%;
-    margin-left: 6px;
-    margin-right: 20px;
-    float: left;
+  width: 70%;
+  height: 100%;
+  margin-left: 6px;
+  margin-right: 20px;
+  float: left;
+  overflow-y: hidden;
 }
 
 .playerBox {
-    width: 100%;
-    height: 80%;
+  width: 100%;
+  height: 80%;
 }
 
 .text {
-    height: 27%;
+  height: 27%;
 }
 
 .playlist {
-    float: right;
-    width: 27%;
-    height: 100%;
+  float: right;
+  width: 27%;
+  height: 100%;
 }
 
 .list {
-    list-style: none;
-    padding-top: 15px;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: 0;
-    margin-inline-end: 0;
-    padding-inline-start: 0;
+  list-style: none;
+  padding-top: 15px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 0;
 }
 
 .title {
-    color: black;
+  color: black;
 }
 
 .channelTitle {
-    color: #bebebe;
+  color: #bebebe;
+}
+
+.shuffleButton {
+  background-color: #f0ecfc;
+  background-image: linear-gradient(315deg, #f0ecfc 0%, #c797eb 74%);
+  line-height: 42px;
+  padding: 0px 10px;
+  border: none;
+}
+.shuffleButton span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.shuffleButton:before,
+.shuffleButton:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  bottom: 0;
+  background: #c797eb;
+  /*box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+      inset -4px -4px 6px 0 rgba(255,255,255,.5),
+      inset 4px 4px 6px 0 rgba(116, 125, 136, .3);*/
+  transition: all 0.3s ease;
+}
+.shuffleButton:before{
+  height: 0%;
+  width: 2px;
+}
+.shuffleButton:after {
+  width: 0%;
+  height: 2px;
+}
+.shuffleButton:hover:before {
+  height: 100%;
+}
+.shuffleButton:hover:after {
+  width: 100%;
+}
+.shuffleButton:hover{
+  background: transparent;
+}
+.shuffleButton span:hover{
+  color: #c797eb;
+}
+.shuffleButton span:before,
+.shuffleButton span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  background: #c797eb;
+  /*box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+      inset -4px -4px 6px 0 rgba(255,255,255,.5),
+      inset 4px 4px 6px 0 rgba(116, 125, 136, .3);*/
+  transition: all 0.3s ease;
+}
+.shuffleButton span:before {
+  width: 2px;
+  height: 0%;
+}
+.shuffleButton span:after {
+  height: 2px;
+  width: 0%;
+}
+.shuffleButton span:hover:before {
+  height: 100%;
+}
+.shuffleButton span:hover:after {
+  width: 100%;
 }

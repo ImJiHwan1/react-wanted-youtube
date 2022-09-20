@@ -1,3 +1,32 @@
 .playlist {
-    
+  display: inline-block;
+  position: relative;
+  margin: 10px 0;
+}
+
+.playlist p {
+  margin-block-start: 0;
+  margin-inline-end: 0;
+}
+
+.playImg {
+  float: left;
+}
+
+.heart {
+  position: absolute;
+  color: red;
+  top: 0.2rem;
+  left: 5.9rem;
+  font-size: 1.3em;
+}
+
+.detail {
+  position: relative;
+  width: calc(100% - 120px);
+  margin-left: 124px;
+}
+
+.channelTitle { 
+  color: #bebebe;
 }
