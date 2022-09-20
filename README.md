@@ -17,52 +17,52 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 ## 2. 프로젝트 구조
 
   해당 유투브 API Project는 총 3개의 화면으로 이루어져 있습니다.<br/>
-    - 메인화면(index.tsx)<br/>
-    - 보관함(wishlist.tsx)<br/>
-    - 검색화면(search.tsx)<br/>
+    &nbsp;&nbsp;- 메인화면(index.tsx)<br/>
+    &nbsp;&nbsp;- 보관함(wishlist.tsx)<br/>
+    &nbsp;&nbsp;- 검색화면(search.tsx)<br/>
 
    
 
-  src 폴더 내의 구성입니다.
-    src
-    - ├── api
-    - │   └── index.ts(유튜브 API 공통화 모듈)<br/>
-    - ├── components(각 화면별 컴포넌트)
-    - │   ├── common
-    - │   │   └── Header.tsx
-    │   ├── video
-    │   │   ├── PlayListItem.tsx
-    │   │   └── Player.tsx
-    │   └── wishlist
-    │       ├── Header.tsx
-    │       ├── WishList.tsx
-    │       └── WishListItem.tsx
-    ├── hooks
-    ├── interfaces
-    │   └── ContentInfo.ts(유튜브 API List 타입 정리)
-    ├── pages
-    │   ├── _app.tsx
-    │   ├── index.tsx
-    │   ├── search.tsx
-    │   └── wishlist.tsx
-    ├── react-app-env.d.ts
-    ├── store
-    │   ├── index.ts(Reducer을 합쳐주는 파일)
-    │   └── modules(Redux-Toolkit Reducer 및 action 파일)
-    │       ├── contentList.ts
-    │       ├── searchList.ts
-    │       └── wishList.ts
-    ├── styles(css를 통합하여 사용하지 않고 각 화면별로 모듈로 나눠서 사용)
-    │   ├── Header.module.css
-    │   ├── Home.module.css
-    │   ├── Playlist.module.css
-    │   ├── Search.module.css
-    │   ├── Video.module.css
-    │   ├── Wishlist.module.css
-    │   └── globals.css
-    └── utils
-        ├── common.ts
-        └── wishStorage.ts
+  src 폴더 내의 구성입니다.<br>
+    src<br/>
+    ├── api<br/>
+    │   └── index.ts(유튜브 API 공통화 모듈)<br/>
+    ├── components(각 화면별 컴포넌트)<br/>
+    │   ├── common<br/>
+    │   │   └── Header.tsx<br/>
+    │   ├── video<br/>
+    │   │   ├── PlayListItem.tsx<br/>
+    │   │   └── Player.tsx<br/>
+    │   └── wishlist<br/>
+    │       ├── Header.tsx<br/>
+    │       ├── WishList.tsx<br/>
+    │       └── WishListItem.tsx<br/>
+    ├── hooks<br/>
+    ├── interfaces<br/>
+    │   └── ContentInfo.ts(유튜브 API List 타입 정리)<br/>
+    ├── pages<br/>
+    │   ├── _app.tsx<br/>
+    │   ├── index.tsx<br/>
+    │   ├── search.tsx<br/>
+    │   └── wishlist.tsx<br/>
+    ├── react-app-env.d.ts<br/>
+    ├── store<br/>
+    │   ├── index.ts(Reducer을 합쳐주는 파일)<br/>
+    │   └── modules(Redux-Toolkit Reducer 및 action 파일)<br/>
+    │       ├── contentList.ts<br/>
+    │       ├── searchList.ts<br/>
+    │       └── wishList.ts<br/>
+    ├── styles(css를 통합하여 사용하지 않고 각 화면별로 모듈로 나눠서 사용)<br/>
+    │   ├── Header.module.css<br/>
+    │   ├── Home.module.css<br/>
+    │   ├── Playlist.module.css<br/>
+    │   ├── Search.module.css<br/>
+    │   ├── Video.module.css<br/>
+    │   ├── Wishlist.module.css<br/>
+    │   └── globals.css<br/>
+    └── utils<br/>
+        ├── common.ts<br/>
+        └── wishStorage.ts<br/>
 
 ## 3. 제약 조건 외 라이브러리를 선택한 이유
 
