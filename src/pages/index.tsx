@@ -40,7 +40,7 @@ const Home: NextPage = () => {
 
   const requestContentList = async() => {
     try {
-      const YoutubeData = await getYouTubeData({ key: `${process.env.NEXT_PUBLIC_YOUTUBE_KEY}`, part: 'snippet', q: '원티드랩', type: 'video', maxResults: 10 })
+      const YoutubeData = await getYouTubeData({ key: `${process.env.NEXT_PUBLIC_CLIENT_ID}`, part: 'snippet', q: '원티드랩', type: 'video', maxResults: 10 })
       if(isDataCheck(YoutubeData.items)) {
         YoutubeData.items.map((item:ContentItem) => {
           item.wishListExistYn = false;
