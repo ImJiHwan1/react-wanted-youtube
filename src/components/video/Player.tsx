@@ -29,21 +29,33 @@ const Player = () => {
   const [playedVideoIdList, setPlayedVideoIdList] = useState<ContentItem[]>([]);
 
   useEffect(() => {
-    if(contentList !== null && nowPlayingList !== null) {
+    if(isDataCheck(contentList)) {
       setPlayedVideoIdList(contentList);
+    }
+  }, [contentList])
+
+  useEffect(() => {
+    if(contentList !== null && nowPlayingList !== null) {
       setVideoId(nowPlayingList.id.videoId);
       setTitle(nowPlayingList.snippet.title);
       setChannelTitle(nowPlayingList.snippet.channelTitle);
       setDesc(nowPlayingList.snippet.description);
     }
   }, [nowPlayingList]);
+
+  // useEffect(() => {
+  //   console.log('찜 목록', wishList);
+  //   console.log('여기탄다.', playedVideoIdList);
+  // }, [playedVideoIdList]);
   
-  useEffect(() => {
-    console.log('찜 목록', wishList);
-  }, [wishList]);
+  // useEffect(() => {
+  //   console.log('찜 목록', wishList);
+  //   console.log('여기탄다.', playedVideoIdList);
+  // }, [wishList]);
   
   const onPlayerEnd: YouTubeProps['onEnd'] = (event) => {
     if(isShuffled) {
+      console.log('비디오 ID', videoId, playedVideoIdList);
       // 1. 재생된 비디오 제외처리
       const videoIdList = playedVideoIdList.filter((item: ContentItem) => (item.id.videoId !== videoId));
       // 2. state에 담아준다.
@@ -52,10 +64,12 @@ const Player = () => {
       const shuffleVideoList = _.sample(videoIdList);
       
       // 모든 영상이 재생되면 마지막 영상 끝나면 중지처리
-      if(playedVideoIdList.length > 0) {
-        console.log('여기탄다.', playedVideoIdList);
+      // 
+      if(playedVideoIdList.length > 1) {
+        console.log('여기탄다.', playedVideoIdList, shuffleVideoList);
         dispatch(nowPlaying(shuffleVideoList));
       } else {
+        console.log('중지 탄다.', playedVideoIdList, shuffleVideoList);
         event.target.pauseVideo();
       }
     } else {
