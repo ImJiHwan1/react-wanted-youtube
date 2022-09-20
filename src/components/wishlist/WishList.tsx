@@ -24,22 +24,36 @@ const WishList = () => {
   const [title, setTitle] = useState<string>('');
   const [channelTitle, setChannelTitle] = useState<string>('');
   const [contentIndex, setContentIndex] = useState<number>(1);
+  const [playedVideoIdList, setPlayedVideoIdList] = useState<any>([]);
+
 
   useEffect(() => {
     if(isDataCheck(wishList)) {
-      setVideoId(wishList[0].id.videoId);
-      setTitle(wishList[0].snippet.title);
-      setChannelTitle(wishList[0].snippet.channelTitle);
+      dispatch(wishNowPlaying(wishList[0]));
     }
   }, [wishList]);
 
   useEffect(() => {
-    if(wishPlayingList !== null) {
+    if(isDataCheck(wishPlayingList)) {
       setVideoId(wishPlayingList.id.videoId);
       setTitle(wishPlayingList.snippet.title);
       setChannelTitle(wishPlayingList.snippet.channelTitle);
     }
   }, [wishPlayingList])
+
+  useEffect(() => {
+    if(wishList !== null && playedVideoIdList.length > 0) {
+      // 2. 재생된 비디오 제외처리
+      let videoIdList = wishList.filter((item: ContentItem) => !playedVideoIdList.includes(item.id.videoId)); // 결과
+      // 3. lodash Sample function을 통해 Array 랜덤 처리
+      const shuffleVideoList = _.sample(videoIdList);
+      
+      console.log('여기탄다', videoId, videoIdList);
+      // 4. nowPlaying reducer에 랜덤 처리된 Object 담는다.
+      // 페이지를 나갔다 돌아오거나 새로고침하면 초기화
+      dispatch(wishNowPlaying(shuffleVideoList));
+    }
+  }, [playedVideoIdList])
 
   useEffect(() => {
     // 검색화면에서 history.push로 첫화면 보내면서 이 로직을 타므로
@@ -66,12 +80,10 @@ const WishList = () => {
 
   const onPlayerEnd: YouTubeProps['onEnd'] = (event) => {
     if(wishShuffled) {
-      // 1. 현재 재생중인 videoId 제거
-      const videoIdList = wishList.filter((item: ContentItem) => (item.id.videoId !== videoId));
-      // 2. lodash Sample function을 통해 Array 랜덤 처리
-      const shuffleVideoList = _.sample(videoIdList);
-      // 3. wishNowPlaying reducer에 랜덤 처리된 Object 담는다.
-      dispatch(wishNowPlaying(shuffleVideoList));
+      // 1. 현재 재생중인 videoId push
+      let playedVideoIdItems = [];
+      playedVideoIdItems.push(videoId); 
+      setPlayedVideoIdList(playedVideoIdItems);
     } else {
       // 찜 목록 만큼만 wishNowPlaying update 시킨다. 마지막 리스트 재생이 끝나면 재생 중지 처리
       if(contentIndex < wishList.length) {
@@ -109,9 +121,9 @@ const WishList = () => {
             <span className={Styles.title} dangerouslySetInnerHTML={{ __html: title}} /><br /><br />
             <span className={Styles.channelTitle}>{channelTitle}</span>
             { isDataCheck(wishList) && wishList.find((item:ContentItem) => item.id.videoId === videoId)?.wishListExistYn ?
-              <FontAwesomeIcon className={Styles.HeartIcon} style={{ float: 'right' }} onClick={() => onHeartClick(wishList[0])} color='red' icon={faHeartCirclePlus} size='2x' />
+              <FontAwesomeIcon className={Styles.HeartIcon} style={{ float: 'right' }} onClick={() => onHeartClick(wishPlayingList)} color='red' icon={faHeartCirclePlus} size='2x' />
             :
-              <FontAwesomeIcon className={Styles.HeartIcon} style={{ float: 'right' }} onClick={() => onHeartClick(wishList[0])} color='red' icon={faHeart} size='2x' />
+              <FontAwesomeIcon className={Styles.HeartIcon} style={{ float: 'right' }} onClick={() => onHeartClick(wishPlayingList)} color='red' icon={faHeart} size='2x' />
             }
           </div>
           <div className={Styles.wishContent}>
