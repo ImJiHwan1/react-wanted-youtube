@@ -47,13 +47,8 @@ const Player = () => {
   }, [nowPlayingList])
   
   useEffect(() => {
-    console.log('여기 탄다');
     console.log('찜 목록', wishList);
   }, [wishList])
-
-  useEffect(() => {
-  }, [])
-  
   
   const onPlayerEnd: YouTubeProps['onEnd'] = (event) => {
     if(isShuffled) {
@@ -64,16 +59,15 @@ const Player = () => {
       // 3. nowPlaying reducer에 랜덤 처리된 Object 담는다.
       dispatch(nowPlaying(shuffleVideoList));
     } else {
+      // 검색 목록 만큼만 wishNowPlaying update 시킨다. 마지막 리스트 재생이 끝나면 재생 중지 처리
       if(contentIndex < contentList.length) {
         dispatch(nowPlaying(contentList[contentIndex]));
         setContentIndex(contentIndex => contentIndex + 1);
       } else {
         event.target.pauseVideo();
       }
-
     }
   }
-
 
   const opts: YouTubeProps['opts'] = {
     height: '100%',
@@ -81,7 +75,7 @@ const Player = () => {
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
-      rel: 0,
+      rel: 1,
       modestbranding: 1
     },
   };

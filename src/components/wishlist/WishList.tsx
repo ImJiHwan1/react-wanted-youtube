@@ -42,7 +42,6 @@ const WishList = () => {
   }, [wishPlayingList])
   
   useEffect(() => {
-    console.log('여기 탄다');
     console.log('찜 목록', wishList);
   }, [wishList])
 

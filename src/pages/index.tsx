@@ -17,6 +17,7 @@ const Home: NextPage = () => {
 
   const dispatch = useDispatch();
   const contentList = useSelector((state: RootState) => state.content.contentList);
+  const wishList = useSelector((state: RootState) => state.wish.wishList);
 
   useEffect(() => {
     try {
@@ -30,7 +31,11 @@ const Home: NextPage = () => {
   }, [])
 
   useEffect(() => {
-    dispatch(wishLocalUpdate(getWishList()));
+    // 검색화면에서 history.push로 첫화면 보내면서 이 로직을 타므로
+    // 새로고침 할 때만 localStorage에 있는 wishList를 가져와야 하므로 length check 추가
+    if(!isDataCheck(wishList)) {
+      dispatch(wishLocalUpdate(getWishList()));
+    }
   }, [])
 
   const requestContentList = async() => {

@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import Styles from '@styles/Header.module.css'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { searchKeywordSet, searchMode } from '@store/modules/searchList';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,6 +15,7 @@ const Header = () => {
   const onSearchText = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
     const keyWord = e.currentTarget.value
     const keyCode = e.key
+    // 엔터키를 입력하여 검색할수 있도록 처리
     if(keyCode === 'Enter') {
       console.log('입력',keyWord);
       dispatch(searchKeywordSet(keyWord));
@@ -27,7 +28,7 @@ const Header = () => {
   }, []);
 
   const onPlayListClick = useCallback(() => {
-    router.push('wishlist');
+    router.push('/wishlist');
   }, []);
 
   return (
