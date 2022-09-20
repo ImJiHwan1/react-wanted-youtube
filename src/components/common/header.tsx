@@ -1,12 +1,46 @@
-import React from 'react'
-import styles from '@styles/Header.module.css'
-import Head from 'next/head';
+import React, { useCallback, useState } from 'react'
+import Styles from '@styles/Header.module.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { searchKeywordSet, searchMode } from '@store/modules/searchList';
+import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBriefcase, faSearch } from '@fortawesome/free-solid-svg-icons';
 
-export const Header = () => {
+
+const Header = () => {
+
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const onSearchText = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    const keyWord = e.currentTarget.value
+    const keyCode = e.key
+    if(keyCode === 'Enter') {
+      console.log('입력',keyWord);
+      dispatch(searchKeywordSet(keyWord));
+      dispatch(searchMode(true));
+      router.push('search');
+    }
+  }, []);
+
+  const onSearchIcon = useCallback(() => {
+  }, []);
+
+  const onPlayListClick = useCallback(() => {
+    router.push('wishlist');
+  }, []);
+
   return (
-    <div className={styles.header}>
-        <input className={styles.search} type='text' placeholder='검색어를 입력해주세요.'></input>
-        <div className={styles.home}>홈버튼</div>
+    <div className={Styles.header}>
+      <input 
+        name='q' 
+        autoComplete='off' 
+        className={Styles.search} 
+        type='text'
+        placeholder='검색어를 입력해주세요.' 
+        onKeyDown={(e) => onSearchText(e)} />
+      <FontAwesomeIcon className={Styles.searchIcon} icon={faSearch} onClick={(e) => onSearchIcon()} />
+      <FontAwesomeIcon className={Styles.playList} icon={faBriefcase} size='2x' onClick={onPlayListClick} />
     </div>
   )
 }
