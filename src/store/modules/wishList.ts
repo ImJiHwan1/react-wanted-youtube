@@ -5,13 +5,12 @@ import { setWishList } from '@utils/wishStorage';
 // initalState 타입 정의
 type StateType = {
   wishList: Array<ContentItem>;
-  wishListExistYn: boolean;
   wishPlayingList: any;
   wishIsShuffled: boolean;
 };
 
 // initalState 생성
-const initialState: StateType = { wishList: [], wishListExistYn: false, wishPlayingList: null, wishIsShuffled: false };
+const initialState: StateType = { wishList: [], wishPlayingList: null, wishIsShuffled: false };
 
 // 슬라이스생성
 export const wishSlice = createSlice({

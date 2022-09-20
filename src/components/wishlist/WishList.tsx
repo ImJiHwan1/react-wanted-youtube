@@ -7,16 +7,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeartCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch } from 'react-redux';
-import { wishListUpdate, wishListDel, wishNowPlaying, wishIsShuffleEnable } from '@store/modules/wishList';
+import { wishListUpdate, wishListDel, wishNowPlaying, wishIsShuffleEnable, wishLocalUpdate } from '@store/modules/wishList';
 import { ContentItem } from '@interfaces/ContentInfo';
 import _ from 'lodash';
 import { isDataCheck } from '@utils/common';
 import WishListItem from '@components/wishlist/WishListItem';
+import { getWishList } from '@utils/wishStorage';
 
 const WishList = () => {
   const dispatch = useDispatch();
   const wishList = useSelector((state: RootState) => state.wish.wishList);
-  const wishListExistYn = useSelector((state: RootState) => state.wish.wishListExistYn);
   const wishPlayingList = useSelector((state: RootState) => state.wish.wishPlayingList);
   const wishShuffled = useSelector((state: RootState) => state.wish.wishIsShuffled);
 
@@ -40,14 +40,18 @@ const WishList = () => {
       setChannelTitle(wishPlayingList.snippet.channelTitle);
     }
   }, [wishPlayingList])
+
+  useEffect(() => {
+    // 검색화면에서 history.push로 첫화면 보내면서 이 로직을 타므로
+    // 새로고침 할 때만 localStorage에 있는 wishList를 가져와야 하므로 length check 추가
+    if(!isDataCheck(wishList)) {
+      dispatch(wishLocalUpdate(getWishList()));
+    }
+  }, [])
   
   useEffect(() => {
     console.log('찜 목록', wishList);
   }, [wishList])
-
-  useEffect(() => {
-    console.log(wishListExistYn);
-  }, [wishListExistYn])
 
   const opts: YouTubeProps['opts'] = {
     height: '100%',
@@ -83,10 +87,8 @@ const WishList = () => {
     console.log(wishList);
     if(wishList.wishListExistYn) {
       dispatch(wishListDel(wishList));
-      console.log(wishList, wishListExistYn);
     } else {
       dispatch(wishListUpdate(wishList));
-      console.log(wishList, wishListExistYn);
     }
   }
 

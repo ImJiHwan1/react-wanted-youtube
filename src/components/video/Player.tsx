@@ -18,7 +18,6 @@ const Player = () => {
   const dispatch = useDispatch();
   const contentList = useSelector((state: RootState) => state.content.contentList);
   const wishList = useSelector((state: RootState) => state.wish.wishList);
-  const wishListExistYn = useSelector((state: RootState) => state.wish.wishListExistYn);
   const nowPlayingList = useSelector((state: RootState) => state.content.nowPlayingList);
   const isShuffled = useSelector((state: RootState) => state.content.isSuffled);
 
