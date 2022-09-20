@@ -60,7 +60,7 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
     │   ├── Video.module.css<br/>
     │   ├── Wishlist.module.css<br/>
     │   └── globals.css<br/>
-    └── utils<br/>
+    └── utils(공통적으로 쓰이는 유틸 함수 및 localStorage 폴더)<br/>
         ├── common.ts<br/>
         └── wishStorage.ts<br/>
 
