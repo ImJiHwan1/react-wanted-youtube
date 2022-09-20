@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Styles from '@styles/Wishlist.module.css'
 import { useSelector } from 'react-redux'
 import { RootState } from '@store/index';
@@ -83,22 +83,22 @@ const WishList = () => {
     }
   }
 
-  const onHeartClick = (wishList: ContentItem) => {
+  const onHeartClick = useCallback((wishList: ContentItem) => {
     console.log(wishList);
     if(wishList.wishListExistYn) {
       dispatch(wishListDel(wishList));
     } else {
       dispatch(wishListUpdate(wishList));
     }
-  }
+  }, []);
 
-  const onShufflePlayClick = () => {
+  const onShufflePlayClick = useCallback(() => {
     if(wishShuffled) {
       dispatch(wishIsShuffleEnable(false))
     } else {
       dispatch(wishIsShuffleEnable(true))
     }
-  }
+  }, []);
 
   return (
     <div className={Styles.Content}>

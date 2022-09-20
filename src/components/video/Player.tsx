@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Styles from '@styles/Video.module.css'
 import YouTube, { YouTubeProps } from 'react-youtube'
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,15 +26,6 @@ const Player = () => {
   const [channelTitle, setChannelTitle] = useState<string>('');
   const [desc, setDesc] = useState<string>('');
   const [contentIndex, setContentIndex] = useState<number>(1);
-
-  useEffect(() => {
-    if(contentList !== null) {
-      setVideoId(contentList[0].id.videoId);
-      setTitle(contentList[0].snippet.title);
-      setChannelTitle(contentList[0].snippet.channelTitle);
-      setDesc(contentList[0].snippet.description);
-    }
-  }, [contentList]);
 
   useEffect(() => {
     if(contentList !== null && nowPlayingList !== null) {
@@ -79,21 +70,21 @@ const Player = () => {
     },
   };
 
-  const onHeartClick = (nowPlayingList: ContentItem) => {
+  const onHeartClick = useCallback((nowPlayingList: ContentItem) => {
     if(nowPlayingList.wishListExistYn) {
       dispatch(wishListDel(nowPlayingList));
     } else {
       dispatch(wishListUpdate(nowPlayingList));
     }
-  }
+  }, []);
 
-  const onShufflePlayClick = () => {
+  const onShufflePlayClick = useCallback(() => {
     if(isShuffled) {
-      dispatch(isShuffleEnable(false))
+      dispatch(isShuffleEnable(false));
     } else {
-      dispatch(isShuffleEnable(true))
+      dispatch(isShuffleEnable(true));
     }
-  }
+  }, []);
 
   return (
     <>

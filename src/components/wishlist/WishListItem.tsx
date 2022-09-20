@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import Styles from '@styles/Wishlist.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@store/index'
 import { faHeartCirclePlus } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
-import { ContentInfo, ContentItem } from '@interfaces/ContentInfo'
+import { ContentItem } from '@interfaces/ContentInfo'
 import { wishListUpdate, wishListDel, wishNowPlaying } from '@store/modules/wishList'
 import { isDataCheck } from '@utils/common'
 
@@ -24,11 +24,11 @@ const WishListItem = (props: PropsTypes) => {
   const contentList = useSelector((state: RootState) => state.content.contentList);
   const wishList = useSelector((state: RootState) => state.wish.wishList);
 
-  const onVideoClick = (ContentItem: ContentItem) => {
-    dispatch(wishNowPlaying(ContentItem));
-  }
+  const onVideoClick = useCallback((wishItem: ContentItem) => {
+    dispatch(wishNowPlaying(wishItem));
+  }, []);
 
-  const onHeartClick = (e:any, wishItem: ContentItem) => {
+  const onHeartClick = useCallback((e:any, wishItem: ContentItem) => {
     console.log(wishItem);
     e.stopPropagation();
     if(wishItem.wishListExistYn) {
@@ -36,7 +36,7 @@ const WishListItem = (props: PropsTypes) => {
     } else {
       dispatch(wishListUpdate(wishItem));
     }
-  }
+  }, []);
 
   return (
     <>
@@ -45,7 +45,7 @@ const WishListItem = (props: PropsTypes) => {
         <span className={Styles.wishListTitle} dangerouslySetInnerHTML={{ __html: props.title}} />
         <span className={Styles.wishListChannelTitle}>{props.channelTitle}</span>
         <div>
-          { isDataCheck(wishList) && wishList.find((item:ContentItem) => item.id.videoId === props.videoId)?.wishListExistYn ?
+          { isDataCheck(wishList) && wishList.find((wishItem:ContentItem) => wishItem.id.videoId === props.videoId)?.wishListExistYn ?
             <FontAwesomeIcon className={Styles.wishListHeartIcon} onClick={(e) => onHeartClick(e, props.wishItem)} color='red' icon={faHeartCirclePlus} />
           :
             <FontAwesomeIcon className={Styles.wishListHeartIcon} onClick={(e) => onHeartClick(e, props.wishItem)} color='red' icon={faHeart} />

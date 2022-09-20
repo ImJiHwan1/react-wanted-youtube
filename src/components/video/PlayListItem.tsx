@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import Styles from '@styles/Playlist.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch, useSelector } from 'react-redux'
@@ -22,9 +22,9 @@ const PlayListItem = (props: PropsTypes) => {
   const dispatch = useDispatch();
   const wishList = useSelector((state: RootState) => state.wish.wishList);
 
-  const onVideoClick = (ContentItem: ContentItem) => {
+  const onVideoClick = useCallback((ContentItem: ContentItem) => {
     dispatch(nowPlaying(ContentItem));
-  }
+  }, []);
 
   return (
     <li className={Styles.playlist} key={props.videoId} onClick={() => onVideoClick(props.contentItem)}>
