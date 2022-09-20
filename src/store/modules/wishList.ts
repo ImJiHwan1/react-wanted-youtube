@@ -46,6 +46,7 @@ export const wishSlice = createSlice({
           }
         });
         state.wishList = deleteItem;
+        setWishList(state.wishList);
       } else {
         state.wishList
       }
