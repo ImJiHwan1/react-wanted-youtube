@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import Styles from '@styles/Video.module.css'
 import YouTube, { YouTubeProps } from 'react-youtube'
 import { useDispatch, useSelector } from 'react-redux';
@@ -33,6 +33,7 @@ const Player = () => {
       setPlayedVideoIdList(contentList);
     }
   }, [contentList])
+
 
   useEffect(() => {
     if(contentList !== null && nowPlayingList !== null) {

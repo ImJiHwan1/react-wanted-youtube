@@ -1,5 +1,5 @@
 import { RootState } from '@store/index';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import Styles from '@styles/Search.module.css'
 import { getYouTubeData } from '@api/index';
@@ -8,47 +8,33 @@ import { nowPlaying, update } from '@store/modules/contentList';
 import Header from '@components/common/Header';
 import { isDataCheck } from '@utils/common';
 import { useRouter } from 'next/router';
-import { ContentItem } from '@interfaces/ContentInfo';
+import { ContentItem, ContentInfo } from '@interfaces/ContentInfo';
+import Player from '@components/video/Player';
+import { useQuery } from 'react-query'
 
 const search = () => {
-  const [isLoading, setIsLoading] = useState<Boolean>(true);
-  const [isError, setIsError] = useState<Boolean>(false);
 
   const searchKeyword = useSelector((state: RootState) => state.search.searchKeyword);
   const dispatch = useDispatch();
   const router = useRouter();
 
-  useEffect(() => {
-    try {
-      requestContentList();
-    } catch (e) {
-      setIsLoading(false);
-      setIsError(true);
-    }
-  }, [searchKeyword])
-  
+  const { data: contentInfo, isLoading, isError, refetch } = useQuery<ContentInfo>(
+    'searchInfo', 
+    () => getYouTubeData({ q: searchKeyword, maxResults: 10 }),
+    { retry: 0, refetchOnWindowFocus: false, refetchOnMount: 'always' }
+  );
 
-  const requestContentList = async() => {
-    try {
-      const YoutubeData = await getYouTubeData({ key: `${process.env.NEXT_PUBLIC_CLIENT_ID}`, part: 'snippet', q: searchKeyword, type: 'video', maxResults: 10 })
-      setIsLoading(false);
-      if(isDataCheck(YoutubeData.items)) {
-        YoutubeData.items.map((item:ContentItem) => {
-          item.wishListExistYn = false;
-        })
-        dispatch(update(YoutubeData.items));
-        dispatch(nowPlaying(YoutubeData.items[0]));
-        router.push('/');
-      } else {
-        setIsLoading(false);
-        setIsError(true);
-      }
-    } catch (e) {
-      console.log(e);
-      setIsLoading(false);
-      setIsError(true);
+  useEffect(() => {
+    console.log(contentInfo);
+    if(contentInfo && contentInfo.items.length > 0) {
+      dispatch(update(contentInfo.items));
+      dispatch(nowPlaying(contentInfo.items[0]));
     }
-  }
+  }, [contentInfo])
+
+  useEffect(() => {
+    refetch();
+  }, [searchKeyword]);
 
   return (
     <>
@@ -56,9 +42,11 @@ const search = () => {
       { isLoading ?
         <div className={Styles.ment}>검색결과 로딩중...</div>
       : isError ?
+        <div className={Styles.ment}>데이터를 불러오는데 실패하였습니다.</div>
+      : (contentInfo && contentInfo.items.length === 0) ?
         <div className={Styles.ment}>'{searchKeyword}'에 대한 검색결과가 없습니다.</div>
       :
-        <></>
+        <Player />
       }
     </>
 
