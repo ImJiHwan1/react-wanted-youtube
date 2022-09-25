@@ -1,3 +1,4 @@
 {
-  "extends": ["next/babel","next/core-web-vitals"]
+  // lint 사용할려면 next/babel 변경
+  "extends": ["next/babel", "next/core-web-vitals"]
 }
