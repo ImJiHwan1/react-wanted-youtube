@@ -1,8 +1,8 @@
-import {configureStore} from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import contentSlice from '@store/modules/contentList';
 import wishSlice from '@store/modules/wishList';
 import searchSlice from './modules/searchList';
-import {setAutoFreeze} from 'immer';
+import { setAutoFreeze } from 'immer';
 
 // 리덕스 store 생성함수
 const makeStore = () => {

@@ -20,7 +20,7 @@ const search = () => {
     isLoading,
     isError,
     refetch,
-  } = useQuery<ContentInfo>('searchInfo', () => getYouTubeData({q: searchKeyword, maxResults: 10}), {
+  } = useQuery<ContentInfo>('searchInfo', () => getYouTubeData({ q: searchKeyword, maxResults: 10 }), {
     retry: 0,
     refetchOnWindowFocus: false,
     refetchOnMount: 'always',

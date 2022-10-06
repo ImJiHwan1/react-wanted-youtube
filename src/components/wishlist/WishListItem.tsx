@@ -1,13 +1,13 @@
-import React, {useCallback} from 'react';
+import React, { useCallback } from 'react';
 import Styles from '@styles/Wishlist.module.css';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '@store/index';
-import {faHeartCirclePlus} from '@fortawesome/free-solid-svg-icons';
-import {faHeart} from '@fortawesome/free-regular-svg-icons';
-import {ContentItem} from '@interfaces/ContentInfo';
-import {wishListUpdate, wishListDel, wishNowPlaying} from '@store/modules/wishList';
-import {isDataCheck} from '@utils/common';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@store/index';
+import { faHeartCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { ContentItem } from '@interfaces/ContentInfo';
+import { wishListUpdate, wishListDel, wishNowPlaying } from '@store/modules/wishList';
+import { isDataCheck } from '@utils/common';
 
 interface PropsTypes {
   key: number;
@@ -41,7 +41,7 @@ const WishListItem = (props: PropsTypes) => {
     <>
       <li className={Styles.wishList} key={props.videoId} onClick={() => onVideoClick(props.wishItem)}>
         <img className={Styles.playImg} src={props.thumbnail} alt={props.title}></img>
-        <span className={Styles.wishListTitle} dangerouslySetInnerHTML={{__html: props.title}} />
+        <span className={Styles.wishListTitle} dangerouslySetInnerHTML={{ __html: props.title }} />
         <span className={Styles.wishListChannelTitle}>{props.channelTitle}</span>
         <div>
           {isDataCheck(wishList) && wishList.find((wishItem: ContentItem) => wishItem.id.videoId === props.videoId)?.wishListExistYn ? (

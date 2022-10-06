@@ -1,4 +1,4 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // initalState 타입 정의
 type StateType = {
@@ -35,7 +35,7 @@ export const contentSlice = createSlice({
 
       if (contentList.length > 0) {
         console.log('여기탄다.');
-        const deleteItem = contentList.filter((item: {id: {videoId: string}}) => {
+        const deleteItem = contentList.filter((item: { id: { videoId: string } }) => {
           if (item.id.videoId !== newItem.id.videoId) {
             return item;
           }
@@ -57,7 +57,7 @@ export const contentSlice = createSlice({
 });
 
 // 액션을 export 해준다.
-export const {update, nowPlaying, del, isShuffleEnable} = contentSlice.actions;
+export const { update, nowPlaying, del, isShuffleEnable } = contentSlice.actions;
 
 // 슬라이스를 export 해준다.
 export default contentSlice;

@@ -1,8 +1,8 @@
-import {loadContentInfo} from '@interfaces/ContentInfo';
+import { loadContentInfo } from '@interfaces/ContentInfo';
 import axios from 'axios';
-import {isEmpty} from 'lodash';
+import { isEmpty } from 'lodash';
 
-export const getYouTubeData = async ({q, maxResults}: {q: string; maxResults: number}): Promise<any> => {
+export const getYouTubeData = async ({ q, maxResults }: { q: string; maxResults: number }): Promise<any> => {
   const params = {
     key: `${process.env.NEXT_PUBLIC_YOUTUBE_KEY}`,
     part: 'snippet',

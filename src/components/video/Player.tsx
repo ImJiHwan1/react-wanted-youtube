@@ -1,17 +1,17 @@
-import React, {useCallback, useEffect, useLayoutEffect, useState} from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import Styles from '@styles/Video.module.css';
-import YouTube, {YouTubeProps} from 'react-youtube';
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '@store/index';
+import YouTube, { YouTubeProps } from 'react-youtube';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@store/index';
 import PlayListItem from '@components/video/PlayListItem';
 import _ from 'lodash';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faHeart} from '@fortawesome/free-regular-svg-icons';
-import {faHeartCirclePlus} from '@fortawesome/free-solid-svg-icons';
-import {wishListUpdate, wishListDel} from '@store/modules/wishList';
-import {isShuffleEnable, nowPlaying} from '@store/modules/contentList';
-import {ContentItem} from '@interfaces/ContentInfo';
-import {isDataCheck} from '@utils/common';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeartCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import { wishListUpdate, wishListDel } from '@store/modules/wishList';
+import { isShuffleEnable, nowPlaying } from '@store/modules/contentList';
+import { ContentItem } from '@interfaces/ContentInfo';
+import { isDataCheck } from '@utils/common';
 
 const Player = () => {
   const dispatch = useDispatch();
@@ -103,13 +103,13 @@ const Player = () => {
             <>
               <YouTube className={Styles.playerBox} videoId={videoId} opts={opts} onEnd={onPlayerEnd} />
               <div className={Styles.text}>
-                <p className={Styles.title} dangerouslySetInnerHTML={{__html: title}} />
+                <p className={Styles.title} dangerouslySetInnerHTML={{ __html: title }} />
                 <p className={Styles.channelTitle}>
                   {channelTitle}
                   {isDataCheck(wishList) && wishList.find((item: ContentItem) => item.id.videoId === videoId)?.wishListExistYn ? (
-                    <FontAwesomeIcon onClick={() => onHeartClick(nowPlayingList)} style={{float: 'right'}} color="red" icon={faHeartCirclePlus} size="2x" />
+                    <FontAwesomeIcon onClick={() => onHeartClick(nowPlayingList)} style={{ float: 'right' }} color="red" icon={faHeartCirclePlus} size="2x" />
                   ) : (
-                    <FontAwesomeIcon onClick={() => onHeartClick(nowPlayingList)} style={{float: 'right'}} color="red" icon={faHeart} size="2x" />
+                    <FontAwesomeIcon onClick={() => onHeartClick(nowPlayingList)} style={{ float: 'right' }} color="red" icon={faHeart} size="2x" />
                   )}
                 </p>
                 <hr />

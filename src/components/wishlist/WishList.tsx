@@ -1,18 +1,18 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Styles from '@styles/Wishlist.module.css';
-import {useSelector} from 'react-redux';
-import {RootState} from '@store/index';
-import YouTube, {YouTubeProps} from 'react-youtube';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faHeartCirclePlus} from '@fortawesome/free-solid-svg-icons';
-import {faHeart} from '@fortawesome/free-regular-svg-icons';
-import {useDispatch} from 'react-redux';
-import {wishListUpdate, wishListDel, wishNowPlaying, wishIsShuffleEnable, wishLocalUpdate} from '@store/modules/wishList';
-import {ContentItem} from '@interfaces/ContentInfo';
+import { useSelector } from 'react-redux';
+import { RootState } from '@store/index';
+import YouTube, { YouTubeProps } from 'react-youtube';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeartCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { useDispatch } from 'react-redux';
+import { wishListUpdate, wishListDel, wishNowPlaying, wishIsShuffleEnable, wishLocalUpdate } from '@store/modules/wishList';
+import { ContentItem } from '@interfaces/ContentInfo';
 import _ from 'lodash';
-import {isDataCheck} from '@utils/common';
+import { isDataCheck } from '@utils/common';
 import WishListItem from '@components/wishlist/WishListItem';
-import {getWishList} from '@utils/wishStorage';
+import { getWishList } from '@utils/wishStorage';
 
 const WishList = () => {
   const dispatch = useDispatch();
@@ -114,14 +114,14 @@ const WishList = () => {
         <>
           <YouTube className={Styles.playerBox} videoId={videoId} opts={opts} onEnd={onPlayerEnd} />
           <div className={Styles.text}>
-            <span className={Styles.title} dangerouslySetInnerHTML={{__html: title}} />
+            <span className={Styles.title} dangerouslySetInnerHTML={{ __html: title }} />
             <br />
             <br />
             <span className={Styles.channelTitle}>{channelTitle}</span>
             {isDataCheck(wishList) && wishList.find((item: ContentItem) => item.id.videoId === videoId)?.wishListExistYn ? (
               <FontAwesomeIcon
                 className={Styles.HeartIcon}
-                style={{float: 'right'}}
+                style={{ float: 'right' }}
                 onClick={() => onHeartClick(wishPlayingList)}
                 color="red"
                 icon={faHeartCirclePlus}
@@ -130,7 +130,7 @@ const WishList = () => {
             ) : (
               <FontAwesomeIcon
                 className={Styles.HeartIcon}
-                style={{float: 'right'}}
+                style={{ float: 'right' }}
                 onClick={() => onHeartClick(wishPlayingList)}
                 color="red"
                 icon={faHeart}

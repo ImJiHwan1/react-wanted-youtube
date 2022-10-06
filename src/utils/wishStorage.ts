@@ -1,4 +1,4 @@
-import {ContentItem} from '@interfaces/ContentInfo';
+import { ContentItem } from '@interfaces/ContentInfo';
 
 export const setWishList = (wishList: ContentItem[]) => {
   if (wishList) {

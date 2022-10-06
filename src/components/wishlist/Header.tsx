@@ -1,8 +1,8 @@
-import React, {useCallback} from 'react';
+import React, { useCallback } from 'react';
 import Styles from '@styles/Header.module.css';
-import {useRouter} from 'next/router';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faHouse} from '@fortawesome/free-solid-svg-icons';
+import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouse } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
   const router = useRouter();

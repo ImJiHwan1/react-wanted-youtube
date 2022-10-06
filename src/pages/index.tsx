@@ -21,7 +21,7 @@ const Home: NextPage = () => {
     data: contentInfo,
     isLoading,
     isError,
-  } = useQuery<ContentInfo>('contentInfo', () => getYouTubeData({q: '원티드랩', maxResults: 10}), {retry: 0, refetchOnWindowFocus: false});
+  } = useQuery<ContentInfo>('contentInfo', () => getYouTubeData({ q: '원티드랩', maxResults: 10 }), { retry: 0, refetchOnWindowFocus: false });
 
   useEffect(() => {
     console.log(contentInfo, isLoading, isError);
