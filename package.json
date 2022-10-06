@@ -6,7 +6,9 @@
     "dev": "env-cmd -f .env.development next dev",
     "build": "env-cmd -f .env.prod next build",
     "start": "env-cmd -f .env.prod next start",
-    "lint": "env-cmd -f .env.development next lint"
+    "lint": "env-cmd -f .env.development next lint",
+    "format": "prettier --check --ignore-path .gitignore .",
+    "format:fix": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",

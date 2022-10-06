@@ -1,5 +1,4 @@
-import { ContentInfo } from '@interfaces/ContentInfo';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 // initalState 타입 정의
 type StateType = {
@@ -10,10 +9,10 @@ type StateType = {
 };
 
 // initalState 생성
-const initialState: StateType = { 
-  contentList: null, 
-  nowPlayingList: null, 
-  isSuffled: false, 
+const initialState: StateType = {
+  contentList: null,
+  nowPlayingList: null,
+  isSuffled: false,
   contentIndex: 1,
 };
 
@@ -34,16 +33,16 @@ export const contentSlice = createSlice({
       let contentList = state.contentList;
       console.log(newItem);
 
-      if(contentList.length > 0) {
-        console.log('여기탄다.')
-        const deleteItem = contentList.filter((item: { id: { videoId: string; }; }) => { 
-          if(item.id.videoId !== newItem.id.videoId) {
+      if (contentList.length > 0) {
+        console.log('여기탄다.');
+        const deleteItem = contentList.filter((item: {id: {videoId: string}}) => {
+          if (item.id.videoId !== newItem.id.videoId) {
             return item;
           }
         });
         contentList = deleteItem;
       } else {
-        contentList
+        contentList;
       }
     },
     nowPlaying: (state: StateType, action: PayloadAction<any>) => {
@@ -54,11 +53,11 @@ export const contentSlice = createSlice({
       const newItem = action.payload;
       state.isSuffled = newItem;
     },
-  }
+  },
 });
 
 // 액션을 export 해준다.
-export const { update, nowPlaying, del, isShuffleEnable } = contentSlice.actions;
+export const {update, nowPlaying, del, isShuffleEnable} = contentSlice.actions;
 
 // 슬라이스를 export 해준다.
 export default contentSlice;

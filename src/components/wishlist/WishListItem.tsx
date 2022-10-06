@@ -1,13 +1,13 @@
-import React, { useCallback } from 'react'
-import Styles from '@styles/Wishlist.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '@store/index'
-import { faHeartCirclePlus } from '@fortawesome/free-solid-svg-icons'
-import { faHeart } from '@fortawesome/free-regular-svg-icons'
-import { ContentItem } from '@interfaces/ContentInfo'
-import { wishListUpdate, wishListDel, wishNowPlaying } from '@store/modules/wishList'
-import { isDataCheck } from '@utils/common'
+import React, {useCallback} from 'react';
+import Styles from '@styles/Wishlist.module.css';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from '@store/index';
+import {faHeartCirclePlus} from '@fortawesome/free-solid-svg-icons';
+import {faHeart} from '@fortawesome/free-regular-svg-icons';
+import {ContentItem} from '@interfaces/ContentInfo';
+import {wishListUpdate, wishListDel, wishNowPlaying} from '@store/modules/wishList';
+import {isDataCheck} from '@utils/common';
 
 interface PropsTypes {
   key: number;
@@ -19,7 +19,6 @@ interface PropsTypes {
 }
 
 const WishListItem = (props: PropsTypes) => {
-
   const dispatch = useDispatch();
   const contentList = useSelector((state: RootState) => state.content.contentList);
   const wishList = useSelector((state: RootState) => state.wish.wishList);
@@ -28,10 +27,10 @@ const WishListItem = (props: PropsTypes) => {
     dispatch(wishNowPlaying(wishItem));
   }, []);
 
-  const onHeartClick = useCallback((e:any, wishItem: ContentItem) => {
+  const onHeartClick = useCallback((e: any, wishItem: ContentItem) => {
     console.log(wishItem);
     e.stopPropagation();
-    if(wishItem.wishListExistYn) {
+    if (wishItem.wishListExistYn) {
       dispatch(wishListDel(wishItem));
     } else {
       dispatch(wishListUpdate(wishItem));
@@ -42,19 +41,19 @@ const WishListItem = (props: PropsTypes) => {
     <>
       <li className={Styles.wishList} key={props.videoId} onClick={() => onVideoClick(props.wishItem)}>
         <img className={Styles.playImg} src={props.thumbnail} alt={props.title}></img>
-        <span className={Styles.wishListTitle} dangerouslySetInnerHTML={{ __html: props.title}} />
+        <span className={Styles.wishListTitle} dangerouslySetInnerHTML={{__html: props.title}} />
         <span className={Styles.wishListChannelTitle}>{props.channelTitle}</span>
         <div>
-          { isDataCheck(wishList) && wishList.find((wishItem:ContentItem) => wishItem.id.videoId === props.videoId)?.wishListExistYn ?
-            <FontAwesomeIcon className={Styles.wishListHeartIcon} onClick={(e) => onHeartClick(e, props.wishItem)} color='red' icon={faHeartCirclePlus} />
-          :
-            <FontAwesomeIcon className={Styles.wishListHeartIcon} onClick={(e) => onHeartClick(e, props.wishItem)} color='red' icon={faHeart} />
-          }
+          {isDataCheck(wishList) && wishList.find((wishItem: ContentItem) => wishItem.id.videoId === props.videoId)?.wishListExistYn ? (
+            <FontAwesomeIcon className={Styles.wishListHeartIcon} onClick={(e) => onHeartClick(e, props.wishItem)} color="red" icon={faHeartCirclePlus} />
+          ) : (
+            <FontAwesomeIcon className={Styles.wishListHeartIcon} onClick={(e) => onHeartClick(e, props.wishItem)} color="red" icon={faHeart} />
+          )}
         </div>
       </li>
       <hr />
     </>
-  )
-}
+  );
+};
 
-export default WishListItem
+export default WishListItem;

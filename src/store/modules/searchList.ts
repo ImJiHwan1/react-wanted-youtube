@@ -1,5 +1,5 @@
-import { ContentItem } from '@interfaces/ContentInfo';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {ContentItem} from '@interfaces/ContentInfo';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 // initalState 타입 정의
 type StateType = {
@@ -9,7 +9,7 @@ type StateType = {
 };
 
 // initalState 생성
-const initialState: StateType = { searchKeyword: '', headerKeywords: '', KeywordList: [] };
+const initialState: StateType = {searchKeyword: '', headerKeywords: '', KeywordList: []};
 
 // 슬라이스생성
 export const searchSlice = createSlice({
@@ -28,11 +28,11 @@ export const searchSlice = createSlice({
       const newItem = action.payload;
       state.headerKeywords = newItem;
     },
-  }
+  },
 });
 
 // 액션을 export 해준다.
-export const { searchKeywordSet, headerKeywordSet } = searchSlice.actions;
+export const {searchKeywordSet, headerKeywordSet} = searchSlice.actions;
 
 // 슬라이스를 export 해준다.
 export default searchSlice;

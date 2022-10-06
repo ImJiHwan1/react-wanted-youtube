@@ -40,7 +40,7 @@
   display: block;
   padding: 15px 30px;
   border-radius: 15px;
-  font-family: "paybooc-Light", sans-serif;
+  font-family: 'paybooc-Light', sans-serif;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   text-decoration: none;
   font-weight: 600;
@@ -60,46 +60,44 @@
 }
 
 .wishContent {
-    padding: 0 19%
+  padding: 0 19%;
 }
 
 .list {
-    list-style: none;
-    padding-top: 15px;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: 0;
-    margin-inline-end: 0;
-    padding-inline-start: 0;
+  list-style: none;
+  padding-top: 15px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 0;
 }
 
 .wishList {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
-    
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
 }
 
 .wishListTitle {
-    word-break: break-word;
-    width: 40%;
-    line-height: 22px;
-    text-align: left;
-    font-weight: bold;
+  word-break: break-word;
+  width: 40%;
+  line-height: 22px;
+  text-align: left;
+  font-weight: bold;
 }
 
 .wishListChannelTitle {
-    color: #bebebe;
-    word-break: break-word;
-    width: 22%;
-    line-height: 90px;
-    text-align: left;
+  color: #bebebe;
+  word-break: break-word;
+  width: 22%;
+  line-height: 90px;
+  text-align: left;
 }
 
 .wishListHeartIcon {
-    position: relative;
-    font-size: 1.5em;
-    top: 28px;
+  position: relative;
+  font-size: 1.5em;
+  top: 28px;
 }
-

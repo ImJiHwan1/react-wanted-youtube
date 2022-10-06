@@ -1,6 +1,6 @@
-import { ContentItem } from '@interfaces/ContentInfo';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { setWishList } from '@utils/wishStorage';
+import {ContentItem} from '@interfaces/ContentInfo';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {setWishList} from '@utils/wishStorage';
 
 // initalState 타입 정의
 type StateType = {
@@ -10,7 +10,7 @@ type StateType = {
 };
 
 // initalState 생성
-const initialState: StateType = { wishList: [], wishPlayingList: null, wishIsShuffled: false };
+const initialState: StateType = {wishList: [], wishPlayingList: null, wishIsShuffled: false};
 
 // 슬라이스생성
 export const wishSlice = createSlice({
@@ -38,16 +38,16 @@ export const wishSlice = createSlice({
       console.log(newItem);
       newItem.wishListExistYn = false;
 
-      if(state.wishList.length > 0) {
-        const deleteItem = state.wishList.filter((item) => { 
-          if(item.id.videoId !== newItem.id.videoId) {
+      if (state.wishList.length > 0) {
+        const deleteItem = state.wishList.filter((item) => {
+          if (item.id.videoId !== newItem.id.videoId) {
             return item;
           }
         });
         state.wishList = deleteItem;
         setWishList(state.wishList);
       } else {
-        state.wishList
+        state.wishList;
       }
     },
     wishNowPlaying: (state: StateType, action: PayloadAction<any>) => {
@@ -58,11 +58,11 @@ export const wishSlice = createSlice({
       const nowItem = action.payload;
       state.wishIsShuffled = nowItem;
     },
-  }
+  },
 });
 
 // 액션을 export 해준다.
-export const { wishListUpdate, wishLocalUpdate, wishListDel, wishNowPlaying, wishIsShuffleEnable } = wishSlice.actions;
+export const {wishListUpdate, wishLocalUpdate, wishListDel, wishNowPlaying, wishIsShuffleEnable} = wishSlice.actions;
 
 // 슬라이스를 export 해준다.
 export default wishSlice;

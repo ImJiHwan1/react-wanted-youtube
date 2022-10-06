@@ -25,17 +25,17 @@ interface ContentSnippet {
   liveBroadcastContent: string;
   publishTime: string;
   publishedAt: string;
-  thumbnails: ContentThumbnails
+  thumbnails: ContentThumbnails;
   title: string;
 }
 
 interface ContentThumbnails {
-  default: ContentThumbnailsElement
-  high: ContentThumbnailsElement
-  medium: ContentThumbnailsElement
+  default: ContentThumbnailsElement;
+  high: ContentThumbnailsElement;
+  medium: ContentThumbnailsElement;
 }
 
-interface ContentThumbnailsElement { 
+interface ContentThumbnailsElement {
   url: string;
   width: number;
   height: number;
@@ -51,8 +51,8 @@ export function loadContentInfo(data: any): ContentInfo {
     etag: data.etag,
     items: data.items ? data.items.map(mapContentItems) : [],
     kind: data.kind,
-    pageInfo: data.pageInfo
-  }
+    pageInfo: data.pageInfo,
+  };
 }
 
 function mapContentItems(data: any) {
@@ -60,7 +60,6 @@ function mapContentItems(data: any) {
     etag: data.etag,
     kind: data.kind,
     id: data.id,
-    snippet: data.snippet
+    snippet: data.snippet,
   };
 }
-  
