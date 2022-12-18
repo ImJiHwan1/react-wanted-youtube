@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "env-cmd -f .env.development next dev",
-    "build": "env-cmd -f .env.prod next build",
+    "build": "env-cmd -f .env.development next build",
     "start": "env-cmd -f .env.prod next start",
     "lint": "env-cmd -f .env.development next lint",
     "format": "prettier --check --ignore-path .gitignore .",

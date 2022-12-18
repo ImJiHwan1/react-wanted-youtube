@@ -106,11 +106,11 @@ const Player = () => {
                 <p className={Styles.title} dangerouslySetInnerHTML={{ __html: title }} />
                 <p className={Styles.channelTitle}>
                   {channelTitle}
-                  {isDataCheck(wishList) && wishList.find((item: ContentItem) => item.id.videoId === videoId)?.wishListExistYn ? (
+                  { isDataCheck(wishList) && wishList.find((item: ContentItem) => item.id.videoId === videoId)?.wishListExistYn ? 
                     <FontAwesomeIcon onClick={() => onHeartClick(nowPlayingList)} style={{ float: 'right' }} color="red" icon={faHeartCirclePlus} size="2x" />
-                  ) : (
+                  : 
                     <FontAwesomeIcon onClick={() => onHeartClick(nowPlayingList)} style={{ float: 'right' }} color="red" icon={faHeart} size="2x" />
-                  )}
+                  }
                 </p>
                 <hr />
                 <p className={Styles.desc}>{desc}</p>
